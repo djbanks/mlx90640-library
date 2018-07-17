@@ -27,6 +27,9 @@ fbuf: examples/fbuf.o examples/fb.o libMLX90640_API.a
 interp: examples/interp.o examples/interpolate.o examples/fb.o libMLX90640_API.a
 	$(CXX) -L/home/pi/mlx90640-library $^ -o $@ -lbcm2835
 
+pitft: examples/pitft.o examples/interpolate.o examples/fb.o libMLX90640_API.a
+	$(CXX) -L/home/pi/mlx90640-library $^ -o $@ -lbcm2835
+
 video: examples/video.o examples/fb.o libMLX90640_API.a
 	$(CXX) -L/home/pi/mlx90640-library $^ -o $@ -lbcm2835 -lavcodec -lavutil -lavformat
 
