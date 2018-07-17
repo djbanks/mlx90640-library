@@ -1,6 +1,6 @@
 all: examples
 
-examples: test step fbuf interp video
+examples: test step fbuf interp video pitft
 
 libMLX90640_API.so: functions/MLX90640_API.o functions/MLX90640_RPI_I2C_Driver.o
 	$(CXX) -fPIC -shared $^ -o $@ -lbcm2835
@@ -11,9 +11,9 @@ libMLX90640_API.a: functions/MLX90640_API.o functions/MLX90640_RPI_I2C_Driver.o
 
 functions/MLX90640_API.o functions/MLX90640_RPI_I2C_Driver.o : CXXFLAGS+=-fPIC -I headers -shared -lbcm2835
 
-test.o step.o fbuf.o interp.o video.o : CXXFLAGS+=-std=c++11
+test.o step.o fbuf.o interp.o video.o pitft.o : CXXFLAGS+=-std=c++11
 
-test step fbuf interp video : CXXFLAGS+=-I.
+test step fbuf interp video pitft : CXXFLAGS+=-I.
 
 test: examples/test.o libMLX90640_API.a
 	$(CXX) -L/home/pi/mlx90640-library $^ -o $@ -lbcm2835
